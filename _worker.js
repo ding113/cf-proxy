@@ -1,6 +1,6 @@
 addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-})
+  event.respondWith(handleRequest(event.request));
+});
 
 const PROXY_COOKIE = "__PROXY_VISITEDSITE__";
 const REPLACE_URL_OBJ = "__location____";
@@ -33,7 +33,7 @@ const httpRequestInjection = `
 
       absolutePath = absolutePath.replace(nowlink, mainOnly);
       absolutePath = absolutePath.replace(nowlink, encodeURI(mainOnly));
-      absolutePath = absolutePath.replace(nowlink, encodeURIComponent(mainOnly));
+      absolutePath = absolutePath.replace(nowlink, encodeURIComponent(nowlink));
 
       absolutePath = absolutePath.replace(base, original_host);
 
@@ -345,16 +345,53 @@ function getMainPage() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proxy Service</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
-        h1 { color: #2c3e50; }
-        input[type="text"] { width: 70%; padding: 10px; margin-right: 10px; }
-        button { padding: 10px 20px; background-color: #3498db; color: white; border: none; cursor: pointer; }
-        button:hover { background-color: #2980b9; }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+            animation: fadeIn 0.5s ease-in;
+        }
+        h1 {
+          color: #03c9a9;
+          text-align: center;
+          margin-bottom: 30px;
+        }
+        input[type="text"] {
+            width: calc(100% - 140px);
+            padding: 10px;
+            margin-right: 10px;
+            border: 2px solid #03c9a9;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #03c9a9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #029f87;
+        }
+        button:active {
+            background-color: #027d69;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
     <h1>Welcome to the Proxy Service</h1>
-    <p>Enter the URL you want to access:</p>
     <input type="text" id="urlInput" placeholder="https://example.com">
     <button onclick="accessUrl()">Access</button>
 
